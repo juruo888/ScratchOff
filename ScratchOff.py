@@ -59,14 +59,14 @@ def noPicturesError():
             "错误",
             "无法读取图片数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read pictures file data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -80,14 +80,14 @@ def noIconError():
             "错误",
             "无法读取图标。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read icon.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -101,14 +101,14 @@ def noFontError():
             "错误",
             "无法读取字体数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read font data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -121,14 +121,14 @@ def cannotWriteLogError():
             "错误",
             "无法写入日志。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot write log file.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO):
             subprocess.run("start website/issues.url", shell=True)
     quit(4)
 
@@ -264,10 +264,12 @@ def Menu_About():
     icon = tkinter.Label(about, image=image)
     icon.pack()
     if typenum <= 4:
-        message = tkinter.Label(about,
-                                text=Lang_About_Message, font=("Microsoft Yahei UI", 10))
+        message = tkinter.Label(
+            about, text=Lang_About_Message, font=(
+                "Microsoft Yahei UI", 10))
         messageConfidential = tkinter.Label(
-            about, text=Lang_About_Confidential, fg="red", font=("Microsoft Yahei UI", 10))
+            about, text=Lang_About_Confidential, fg="red", font=(
+                "Microsoft Yahei UI", 10))
         messageVersion = tkinter.Label(about,
                                        text=Lang_About_Test +
                                        str(major) +
@@ -343,7 +345,7 @@ def init(inittype):
             title += "[预先发布版] "
         if DEBUG:
             title += "[开发人员模式] "
-        root.title(title+Lang_Title)
+        root.title(title + Lang_Title)
         root.geometry(str(SCREENSIZE[0]) +
                       "x" +
                       str(SCREENSIZE[1]) +
@@ -462,7 +464,7 @@ if typenum <= 4:
         str(x) +
         "。\n以任何方式进行未经授权的使用或披露可能会招致惩戒处分，最严重的处罚可要求承担可能的民事与刑事责任。\n若以认真阅读这段文字，请点击否确认。",
         tkinter.messagebox.WARNING,
-            tkinter.messagebox.YESNO) == True:
+            tkinter.messagebox.YESNO):
         printLog("INFO", "You click yes.")
         quit(3)
 elif typenum <= 8:
@@ -482,7 +484,7 @@ elif typenum <= 8:
         str(x) +
         "。\n若以认真阅读这段文字，请点击否确认。",
         tkinter.messagebox.WARNING,
-            tkinter.messagebox.YESNO) == True:
+            tkinter.messagebox.YESNO):
         printLog("INFO", "You click yes.")
         quit(3)
 
