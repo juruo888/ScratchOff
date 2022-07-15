@@ -5,12 +5,12 @@ import os
 import linecache
 import zipfile
 PATH = os.environ.get("PATH").split(";")
-major = int(linecache.getline("ScratchOff.py", 27)[8:])
-minor = int(linecache.getline("ScratchOff.py", 28)[8:])
-releases = int(linecache.getline("ScratchOff.py", 29)[11:])
-build = int(linecache.getline("ScratchOff.py", 30)[8:])
-typenum = int(linecache.getline("ScratchOff.py", 31)[10:])
-x = int(linecache.getline("ScratchOff.py", 32)[4:])
+major = int(linecache.getline("ScratchOff.py", 28)[8:])
+minor = int(linecache.getline("ScratchOff.py", 29)[8:])
+releases = int(linecache.getline("ScratchOff.py", 30)[11:])
+build = int(linecache.getline("ScratchOff.py", 31)[8:])
+typenum = int(linecache.getline("ScratchOff.py", 32)[10:])
+x = int(linecache.getline("ScratchOff.py", 33)[4:])
 if int(typenum) <= 6:
     DEBUG = True
 else:
@@ -55,7 +55,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py", "r", encoding="utf-8") as file:
         text = file.readlines()
-    text[22] = "DEBUG = True\n"
+    text[23] = "DEBUG = True\n"
     with open("ScratchOff.py", "w", encoding="utf-8") as file:
         for i in text:
             file.write(i)
@@ -77,7 +77,7 @@ if DEBUG:
     os.system("del ScratchOff.spec")
     with open("ScratchOff.py", "r", encoding="utf-8") as file:
         text = file.readlines()
-    text[22] = "DEBUG = False\n"
+    text[23] = "DEBUG = False\n"
     with open("ScratchOff.py", "w", encoding="utf-8") as file:
         for i in text:
             file.write(i)
