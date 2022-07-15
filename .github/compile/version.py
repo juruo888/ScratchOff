@@ -1,12 +1,12 @@
 import json
 import os
 import linecache
-major = int(linecache.getline("ScratchOff.py", 27)[8:])
-minor = int(linecache.getline("ScratchOff.py", 28)[8:])
-releases = int(linecache.getline("ScratchOff.py", 29)[11:])
-build = int(linecache.getline("ScratchOff.py", 30)[8:])
-typenum = int(linecache.getline("ScratchOff.py", 31)[10:])
-x = int(linecache.getline("ScratchOff.py", 32)[4:])
+major = int(linecache.getline("ScratchOff.py", 28)[8:])
+minor = int(linecache.getline("ScratchOff.py", 29)[8:])
+releases = int(linecache.getline("ScratchOff.py", 30)[11:])
+build = int(linecache.getline("ScratchOff.py", 31)[8:])
+typenum = int(linecache.getline("ScratchOff.py", 32)[10:])
+x = int(linecache.getline("ScratchOff.py", 33)[4:])
 version = str(major) + "." + str(minor) + "." + str(releases) + \
     "." + str(build) + "." + str(typenum) + "." + str(x)
 rb = json.loads(os.environ["MSG"])[-1].split("\n\n")
