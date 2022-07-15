@@ -7,9 +7,9 @@
 <h1 align="center">- 刮刮乐 -</h1>
 
 <p align="center">
-<a href="https://github.com/class-tools/ScratchOff/actions/workflows/check.yml"><img src="https://github.com/class-tools/ScratchOff/actions/workflows/check.yml"></a>
+<!--<a href="https://github.com/class-tools/ScratchOff/actions/workflows/check.yml"><img src="https://github.com/class-tools/ScratchOff/actions/workflows/check.yml"></a>
 <a href="https://github.com/class-tools/ScratchOff/actions/workflows/codeql.yml"><img src="https://github.com/class-tools/ScratchOff/actions/workflows/codeql.yml"></a>
-<a href="https://github.com/class-tools/ScratchOff/actions/workflows/compile.yml"><img src="https://github.com/class-tools/ScratchOff/actions/workflows/compile.yml"></a>
+<a href="https://github.com/class-tools/ScratchOff/actions/workflows/compile.yml"><img src="https://github.com/class-tools/ScratchOff/actions/workflows/compile.yml"></a>-->
 <a href="https://github.com/class-tools/ScratchOff/releases/latest"><img src="https://img.shields.io/github/v/release/class-tools/ScratchOff.svg?logo=iCloud"></a>
 <img src="https://img.shields.io/badge/support-Windows%207%20+-blue?logo=Windows">
 </p>

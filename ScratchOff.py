@@ -1,5 +1,6 @@
 # Import
 import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "0"
 import pygame
 import sys
 import random
@@ -27,8 +28,8 @@ BOMBTIME = "2022.7.20 12:00:00"
 major = 1
 minor = 2
 releases = 0
-build = 10
-typenum = 2
+build = 11
+typenum = 1
 x = 1
 
 # Language
@@ -53,20 +54,21 @@ else:
 def noPicturesError():
     """No pictures error"""
     quit(1)
+    root.wm_attributes('-topmost',1)
     printLog("ERROR", "Cannot read pictures file data.")
     if IsZh_Hans:
         if tkinter.messagebox._show(
             "错误",
             "无法读取图片数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read pictures file data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -74,20 +76,21 @@ def noPicturesError():
 def noIconError():
     """No icon error"""
     quit(1)
+    root.wm_attributes('-topmost',1)
     printLog("ERROR", "Cannot read icon.")
     if IsZh_Hans:
         if tkinter.messagebox._show(
             "错误",
             "无法读取图标。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read icon.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -95,20 +98,21 @@ def noIconError():
 def noFontError():
     """No font error"""
     quit(1)
+    root.wm_attributes('-topmost',1)
     printLog("ERROR", "Cannot read font data.")
     if IsZh_Hans:
         if tkinter.messagebox._show(
             "错误",
             "无法读取字体数据。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot read font data.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     quit(3)
 
@@ -116,19 +120,20 @@ def noFontError():
 def cannotWriteLogError():
     """Cannot write log error"""
     quit(1)
+    root.wm_attributes('-topmost',1)
     if IsZh_Hans:
         if tkinter.messagebox._show(
             "错误",
             "无法写入日志。\n如果你认为这是程序的问题，你可以点击“是”跳转到 Issues 界面反馈。",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     else:
         if tkinter.messagebox._show(
             "Error",
             "Cannot write log file.\nIf you think it is a bug, you can click \"yes\" to skip to the issues page.",
             tkinter.messagebox.ERROR,
-                tkinter.messagebox.YESNO) == True:
+                tkinter.messagebox.YESNO) == "yes":
             subprocess.run("start website/issues.url", shell=True)
     quit(4)
 
@@ -252,6 +257,7 @@ def watermark():
 
 def Menu_About():
     """About in menu bar"""
+    printLog("INFO", "Use menu command \"About\".")
     about = tkinter.Toplevel()
     try:
         about.iconbitmap("SO.ico")
@@ -260,8 +266,10 @@ def Menu_About():
     about.title(Lang_About)
     about.geometry("600x320")
     about.resizable(width=False, height=False)
+    about.wm_attributes('-topmost',1)
     image = tkinter.PhotoImage(file="about.png")
     icon = tkinter.Label(about, image=image)
+    icon.image=image
     icon.pack()
     if typenum <= 4:
         message = tkinter.Label(about,
@@ -316,17 +324,17 @@ def Menu_About():
                                 "." +
                                 str(x), font=("Microsoft Yahei UI", 10))
         message.pack()
-    about.mainloop()
 
 
 def Menu_Quit():
     """Quit in menu bar"""
+    printLog("INFO", "Use menu command \"Quit\".")
     quit(2)
 
 
 def init(inittype):
     if inittype == 1:
-        global root
+        global root,embed
         root = tkinter.Tk()
         title = ""
         if typenum == 1:
@@ -366,13 +374,13 @@ def init(inittype):
         root["menu"] = menubar
         menubar.add_command(label=Lang_About, command=Menu_About)
         menubar.add_command(label=Lang_Quit, command=Menu_Quit)
-    else:
-        global screen
         embed = tkinter.Frame(root, width=SCREENSIZE[0], height=SCREENSIZE[1])
         embed.grid(columnspan=(600), rowspan=500)
         embed.pack(side=tkinter.LEFT)
         os.environ["SDL_WINDOWID"] = str(embed.winfo_id())
         os.environ["SDL_VIDEODRIVER"] = "windib"
+    elif inittype==2:
+        global screen
         pygame.init()
         pygame.mouse.set_cursor(*pygame.cursors.diamond)
         screen = pygame.display.set_mode(SCREENSIZE)
@@ -417,8 +425,10 @@ while True:
     try:
         image = readImageRandomly()
     except FileNotFoundError:
+        init(1)
         noPicturesError()
     except IndexError:
+        init(1)
         noPicturesError()
     except UnidentifiedImageError as errorMsg:
         subprocess.run(
@@ -446,26 +456,13 @@ init(1)
 
 # Warn
 if typenum <= 4:
-    if tkinter.messagebox._show(
-        "警告",
-        "此版本为内部版本，版本号：" +
-        str(major) +
-        "." +
-        str(minor) +
-        "." +
-        str(releases) +
-        "." +
-        str(build) +
-        "." +
-        str(typenum) +
-        "." +
-        str(x) +
-        "。\n以任何方式进行未经授权的使用或披露可能会招致惩戒处分，最严重的处罚可要求承担可能的民事与刑事责任。\n若以认真阅读这段文字，请点击否确认。",
-        tkinter.messagebox.WARNING,
-            tkinter.messagebox.YESNO) == True:
+    root.wm_attributes('-topmost',1)
+    if tkinter.messagebox._show("警告", "此版本为内部版本，版本号：" + str(major) + "." + str(minor) + "." + str(releases) + "." + str(build) + "." + str(typenum) + "." + str(x) + "。\n以任何方式进行未经授权的使用或披露可能会招致惩戒处分，最严重的处罚可要求承担可能的民事与刑事责任。\n若以认真阅读这段文字，请点击否确认。", tkinter.messagebox.WARNING, tkinter.messagebox.YESNO) == "yes":
         printLog("INFO", "You click yes.")
+        quit(1)
         quit(3)
 elif typenum <= 8:
+    root.wm_attributes('-topmost',1)
     if tkinter.messagebox._show(
         "警告",
         "此版本为测试版本，仅用于测试，版本号：" +
@@ -482,9 +479,11 @@ elif typenum <= 8:
         str(x) +
         "。\n若以认真阅读这段文字，请点击否确认。",
         tkinter.messagebox.WARNING,
-            tkinter.messagebox.YESNO) == True:
+            tkinter.messagebox.YESNO) == "yes":
         printLog("INFO", "You click yes.")
+        quit(1)
         quit(3)
+root.wm_attributes('-topmost',0)
 
 # Init game
 init(2)
@@ -544,7 +543,7 @@ while True:
     screen.blit(surface, (0, 0))
     try:
         watermark()
-    except BaseException:
+    except FileNotFoundError:
         noFontError()
     pygame.display.update()
     try:

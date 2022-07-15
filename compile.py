@@ -4,7 +4,6 @@
 import os
 import linecache
 import zipfile
-os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "0"
 PATH = os.environ.get("PATH").split(";")
 major = int(linecache.getline("ScratchOff.py", 27)[8:])
 minor = int(linecache.getline("ScratchOff.py", 28)[8:])
@@ -112,6 +111,7 @@ os.system("xcopy pictures Releases\\ScratchOff_" +
 os.system("del temp.txt")
 os.system("copy font.ttc Releases\\ScratchOff_" + version + "\\font.ttc")
 os.system("copy SO.ico Releases\\ScratchOff_" + version + "\\SO.ico")
+os.system("copy about.png Releases\\ScratchOff_" + version + "\\about.png")
 os.system("rd /s /q python")
 z = zipfile.ZipFile(
     "Releases\\ScratchOff_" +
